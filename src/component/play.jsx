@@ -144,7 +144,7 @@
 
 
 import React, { useEffect, useState } from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 
 function App() {
     const [showResults, setShowResults] = useState(false);
@@ -152,6 +152,14 @@ function App() {
     const [score, setScore] = useState(0);
     const [highestScore, setHighestScore] = useState(0);
 
+    const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:3000/api/data')
+      .then(res => res.json())
+      .then(result => setData(result)) // Changed 'data' to 'result' to avoid confusion
+      .catch(err => console.log(err));
+  }, []);
 
     const questions = [
         {
@@ -275,16 +283,34 @@ function App() {
                             Question: {currentQuestion + 1} out of {questions.length}
                         </h2>
                         <h3 className="question-text">{questions[currentQuestion].text}</h3>
-                        <Box>
+                        <Box className='name' sx={{display: "flex", flexDirection: "column", gap: 2, width: 200}}>
                             {questions[currentQuestion].options.map((option) => (
-                                <Typography key={option.id} onClick={() => optionClicked(option.isCorrect)}>
+                                <Button sx={{backgroundColor: "#eeeeee", borderRadius: 5, width: 200}} key={option.id} onClick={() => optionClicked(option.isCorrect)}>
                                     {option.text}
-                                </Typography>
+                                </Button>
                             ))}
                         </Box>
                     </div>
                 )}
             </div>
+            {/* <table>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Password</th>
+          </tr>
+        </thead>
+        <tbody>
+          {data.map((d, i) => (
+            <tr key={i}>
+              <td>{d.emp_id}</td>
+              <td>{d.emp_name}</td>
+              <td>{d.emp_salary}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table> */}
         </div>
     );
 }
