@@ -424,6 +424,7 @@ const s = {//  import React, { useEffect, useState } from "react";
   import React, { useEffect, useState } from "react";
   import { Box, Typography, Button } from "@mui/material";
   import axios from "axios";
+  import "./60sec.css"
 
   // images
   import img1 from "../assets/images/flags-sheet15.webp";
@@ -441,6 +442,7 @@ const s = {//  import React, { useEffect, useState } from "react";
   import img13 from "../assets/images/flags-sheet26.webp";
   import img14 from "../assets/images/flags-sheet27.webp";
   import img15 from "../assets/images/flags-sheet28.webp";
+import { NavLink } from "react-router-dom";
 
   // json file containg countries
   // import countriesData from './english-country-name/English.json'
@@ -719,7 +721,9 @@ const s = {//  import React, { useEffect, useState } from "react";
 
                   <Typography variant="h2">HS: {highestScore}</Typography>
                   <Typography variant="h2">S: {score}</Typography>
-                  <Typography variant="h2">home</Typography>
+                  <Box sx={{}}>
+                    <NavLink className={"link1"} to="/gamemode">home</NavLink>
+                  </Box>
                 </Box>
                   {showResults ? (
                       <Box className="final-results" color={"#fff"}>
