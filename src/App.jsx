@@ -6,7 +6,7 @@ import Home from "./component/home.jsx";
 
 const Start = lazy(() => import("./component/start.jsx"));
 const Gamemode = lazy(() => import("./component/gamemode.jsx"));
-// const Contact = lazy(() => import("./component/contact.jsx"));
+const Streak = lazy(() => import("./components/streak.jsx"));
 // network ex home
 const Play = lazy(() => import("./component/play.jsx"));
 
@@ -24,10 +24,10 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Home />} />
 
+            <Route path="/streak" element={<Streak />} />
             <Route path="/play" element={<Play />} />
             <Route path="/start" element={<Start />} />
             <Route path="/gamemode" element={<Gamemode />} />
-            {/* <Route path="/contact" element={<Contact />} /> */}
             
             {/* services-details */}
             {/* <Route path="/software" element={<Software />} />

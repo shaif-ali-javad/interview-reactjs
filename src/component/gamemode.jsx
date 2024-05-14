@@ -4,7 +4,8 @@ import { NavLink } from 'react-router-dom'
 function gamemode() {
   return (
     <div>
-      <NavLink className="link0" to="/play" sx={{}}> 60 sec </NavLink>
+      <NavLink className="link0" to="/streak"> WIN STEAK </NavLink><br />
+      <NavLink className="link0" to="/play"> 60 SEC </NavLink>
     </div>
   )
 }
