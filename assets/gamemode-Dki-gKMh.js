@@ -1,0 +1,1 @@
+import{j as s,N as a}from"./index-BJXP5GBg.js";function r(){return s.jsxs("div",{children:[s.jsx(a,{className:"link0",to:"/streak",children:" WIN STEAK "}),s.jsx("br",{}),s.jsx(a,{className:"link0",to:"/play",children:" 60 SEC "})]})}export{r as default};
