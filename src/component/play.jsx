@@ -731,9 +731,11 @@ const s = {//  import React, { useEffect, useState } from "react";
                       </Box>
                   ) : (
                       <div className="question-card">
+                        <Box color={'#fff'}>
                           <h2>
                               Question: {currentQuestion + 1} out of {questions.length}
                           </h2>
+                        </Box>
                           <Typography variant="body1" color={'#fff'}>
                             {maxSecond<10? "0" + maxSecond:maxSecond}
                           </Typography>
