@@ -1,0 +1,42 @@
+[
+    {
+        "options": [
+            { "id": 0, "text": "a. USA", "isCorrect": true },
+            { "id": 1, "text": "b. China", "isCorrect": false },
+            { "id": 2, "text": "c. Japan", "isCorrect": false },
+            { "id": 3, "text": "d. Germany", "isCorrect": false }
+        ]
+    },
+    {
+        "options": [
+            { "id": 0, "text": "a. India", "isCorrect": true },
+            { "id": 1, "text": "b. France", "isCorrect": false },
+            { "id": 2, "text": "c. Brazil", "isCorrect": false },
+            { "id": 3, "text": "d. Italy", "isCorrect": false }
+        ]
+    },
+    {
+        "options": [
+            { "id": 0, "text": "a. Canada", "isCorrect": true },
+            { "id": 1, "text": "b. South Korea", "isCorrect": false },
+            { "id": 2, "text": "c. Russia", "isCorrect": false },
+            { "id": 3, "text": "d. Australia", "isCorrect": false }
+        ]
+    },
+    {
+        "options": [
+            { "id": 0, "text": "a. Spain", "isCorrect": true },
+            { "id": 1, "text": "b. Mexico", "isCorrect": false },
+            { "id": 2, "text": "c. indonesia", "isCorrect": false },
+            { "id": 3, "text": "d. Netherlands", "isCorrect": false }
+        ]
+    },
+    {
+        "options": [
+            { "id": 0, "text": "a. Saudi Arabia", "isCorrect": true },
+            { "id": 1, "text": "b. Turkey", "isCorrect": false },
+            { "id": 2, "text": "c. Switzerland", "isCorrect": false },
+            { "id": 3, "text": "d. Poland", "isCorrect": false }
+        ]
+    }
+]

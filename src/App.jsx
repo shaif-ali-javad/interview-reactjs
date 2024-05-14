@@ -4,8 +4,8 @@ import { HashRouter as Router, Routes, Route } from "react-router-dom";
 // new home
 import Home from "./component/home.jsx";
 
-// const About = lazy(() => import("./component/about.jsx"));
-// const Services = lazy(() => import("./component/services.jsx"));
+const Start = lazy(() => import("./component/start.jsx"));
+const Gamemode = lazy(() => import("./component/gamemode.jsx"));
 // const Contact = lazy(() => import("./component/contact.jsx"));
 // network ex home
 const Play = lazy(() => import("./component/play.jsx"));
@@ -24,10 +24,10 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Home />} />
 
-            <Route path="/interview-reactjs/play" element={<Play />} />
-            {/* <Route path="/services" element={<Services />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} /> */}
+            <Route path="/play" element={<Play />} />
+            <Route path="/start" element={<Start />} />
+            <Route path="/gamemode" element={<Gamemode />} />
+            {/* <Route path="/contact" element={<Contact />} /> */}
             
             {/* services-details */}
             {/* <Route path="/software" element={<Software />} />
