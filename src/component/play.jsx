@@ -425,6 +425,13 @@ const s = {//  import React, { useEffect, useState } from "react";
   import { Box, Typography, Button } from "@mui/material";
   import axios from "axios";
   import "./60sec.css"
+  import { NavLink } from "react-router-dom";
+  import Lottie from'lottie-react'
+  import animation from "../assets/2.json";
+  import animation0 from "../assets/3.json";
+  import animation1 from "../assets/4.json";
+  import animation2 from "../assets/5.json";
+  import animation3 from "../assets/6.json";
 
   // images
   import img1 from "../assets/images/flags-sheet15.webp";
@@ -442,7 +449,6 @@ const s = {//  import React, { useEffect, useState } from "react";
   import img13 from "../assets/images/flags-sheet26.webp";
   import img14 from "../assets/images/flags-sheet27.webp";
   import img15 from "../assets/images/flags-sheet28.webp";
-import { NavLink } from "react-router-dom";
 
   // json file containg countries
   // import countriesData from './english-country-name/English.json'
@@ -460,6 +466,10 @@ import { NavLink } from "react-router-dom";
       const [selectedOption, setSelectedOption] = useState(null);
       const [clicked, setClicked] = useState(false);
       const [maxSecond, setMaxSecond] = useState(0);
+      const [one, setOne] = useState(0);
+      const [second, setSecond] = useState(0);
+      const [third, setThird] = useState(0);
+      const [fourth, setFourth] = useState(0);
 
 
     // max game time 1 minute
@@ -485,10 +495,21 @@ import { NavLink } from "react-router-dom";
       // onclick change color
 
       const updateHighestScore = () => {
-              if (score > highestScore) {
-                  setHighestScore(score);
-              }
+        if (score > highestScore) {
+            setHighestScore(score);
+            setOne(score);
           }
+          if (one > score) {
+            setSecond(score);
+          }
+          if (second > score) {
+            setThird(score);
+          }
+          if (third > score) {
+            setFourth(score);
+          }
+          
+    }
 
       useEffect(() => {
           const timer = setInterval(() => {
@@ -717,38 +738,63 @@ import { NavLink } from "react-router-dom";
     return (
       <div className="App">
               <Box className="App">
-                <Box display={'grid'} gridTemplateColumns={{xs: "1fr", sm: "repeat(2, 1fr)", md: "repeat(3, 1fr)"}} gap={2} sx={{mt:-5}} color="white">
-
-                  <Typography variant="h2">HS: {highestScore}</Typography>
-                  <Typography variant="h2">S: {score}</Typography>
-                  <Box sx={{}}>
+                  {/* <Typography variant="h2">HS: {highestScore}</Typography> */}
+                      <Box sx={{mt:-7, ml: -40, color: "#fff"}} className={"top"} textAlign="left">
+                  <Box sx={{ display: 'flex', justifyContent: 'center', margin: '2rem 0 0', borderRadius: '10px' }}>
+                  <Lottie animationData={animation} alt="background2" width={100} className='background2'/> 
+                  <Typography variant="h2" sx={{m: 1}}>{one}</Typography>
+                  </Box>
+                  <Box sx={{ display: 'flex', justifyContent: 'center', margin: '1rem 0', borderRadius: '10px'}}>
+                  <Lottie animationData={animation0} alt="background2" width={100} className='background2'/> 
+                  <Typography variant="h2" sx={{m: 1}}>{second}</Typography>
+                  </Box>
+                  <Box sx={{ display: 'flex', justifyContent: 'center', margin: '1rem 0', borderRadius: '10px' }}>
+                  <Lottie animationData={animation1} alt="background2" width={100} className='background2'/> 
+                  <Typography variant="h2" sx={{m: 1}}>{third}</Typography>
+                  </Box>
+                  <Box sx={{ display: 'flex', justifyContent: 'center', margin: '1rem 0', borderRadius: '10px' }}>
+                  <Lottie animationData={animation2} alt="background2" width={100} className='background2'/> 
+                  <Typography variant="h2" sx={{m: 1}}>{fourth}</Typography>
+                  </Box>
+                  </Box>
+                <Box display={'grid'} gridTemplateColumns={{xs: "1fr", sm: "repeat(2, 1fr)", md: "repeat(2, 1fr)"}} gap={2} sx={{mt:0}} color="white">
+                
+                  <Typography variant="h2">Score {score}</Typography>
+                  <Box sx={{backgroundColor: "#fff", padding: 1, borderRadius: "10px", color: "#000"}}>
                     <NavLink className={"link1"} to="/gamemode">home</NavLink>
                   </Box>
                 </Box>
                   {showResults ? (
                       <Box className="final-results" color={"#fff"}>
                           <h1>Final Results</h1>
-                          <h2>
+                          {/* <h2>
                               {score} out of {questions.length} correct - ({(score / questions.length) * 100}%)
-                          </h2>
+                          </h2> */}
                           <button onClick={restartGame}>Restart game</button>
                       </Box>
                   ) : (
                       <div className="question-card">
-                        <Box color={'#fff'}>
+                        {/* <Box color={'#fff'}>
                           <h2>
                               Question: {currentQuestion + 1} out of {questions.length}
                           </h2>
-                        </Box>
-                          <Typography variant="body1" color={'#fff'}>
+                        </Box> */}
+                          <Box sx={{ display: 'flex', justifyContent: 'center', margin: '0 0 1rem', borderRadius: '10px' }}>
+
+                          <Lottie animationData={animation3} alt="background2" width={100} className='background2'/> 
+                          <Typography variant="h2" color={'#fff'} sx={{m: 1}}>
                             {maxSecond<10? "0" + maxSecond:maxSecond}
                           </Typography>
-                          <Typography variant="body1" color={'#fff'}>
+                          </Box>
+                          {/* <Typography variant="body1" color={'#fff'}>
                             {minutes<10? "0" + minutes:minutes} : {seconds<10? "0" + seconds:seconds}
-                          </Typography>
+                          </Typography> */}
                           <Box sx={{mb:5}}>
 
                           <img src={questions[currentQuestion].text} width={200} className="question-text"/>
+                          <Box className={"line-container"} sx={{width: 200}}>
+                          <Box className='line' sx={{backgroundColor: "#fff", mt:1,mb:-3, borderRadius: 5}}/>
+                          </Box>
                           </Box>
                           <Box className='name'
                           sx={{display: "flex", flexDirection: "column", gap: 2, 

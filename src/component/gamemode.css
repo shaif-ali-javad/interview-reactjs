@@ -1,14 +1,18 @@
-.img0{
-    border-radius: 20px;
-}
-
-.link0{
-    color: #fff;
-    text-decoration: none;
-}
-
 body{
-    background-color: black;
+    background-color: rgb(0, 106, 172);
+}
+
+.background{
+    width: 50px;
+}
+
+.text0{
+    padding-top: 15px;
+    padding-left: 10px;
+}
+
+.n{
+    color: rgb(195, 195, 195);
 }
 
 
