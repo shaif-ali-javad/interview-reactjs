@@ -1,0 +1,1 @@
+import{j as s,N as t}from"./index-DNNZ9Et7.js";const a="/interview-reactjs/assets/GUESSTHEFLAG-CvMvf7A4.png";function i(){return s.jsxs("div",{children:[s.jsx("img",{src:a,alt:"",className:"img0"}),s.jsx(t,{className:"link5",to:"/gamemode",sx:{},children:" Start "})]})}export{i as default};
