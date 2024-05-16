@@ -432,6 +432,14 @@ const s = {//  import React, { useEffect, useState } from "react";
   import animation1 from "../assets/4.json";
   import animation2 from "../assets/5.json";
   import animation3 from "../assets/6.json";
+  import animation7 from "../assets/7.json";
+  import animation8 from "../assets/8.json";
+
+
+  // image
+  import img01 from "../assets/Asset 2.png";
+  import img02 from "../assets/restart.png";
+  import img03 from "../assets/game over.png";
 
   // images
   import img1 from "../assets/images/flags-sheet15.webp";
@@ -739,38 +747,44 @@ const s = {//  import React, { useEffect, useState } from "react";
       <div className="App">
               <Box className="App">
                   {/* <Typography variant="h2">HS: {highestScore}</Typography> */}
-                      <Box sx={{mt:-7, ml: -40, color: "#fff"}} className={"top"} textAlign="left">
+                  <Box sx={{mt:-7, ml: -40, color: "#fff"}} className={"top"} textAlign="left">
+                    <Typography variant="h2" sx={{ml: 1, mt:1, mb:-3}} textAlign={"center"}>High <br /> Score</Typography>
                   <Box sx={{ display: 'flex', justifyContent: 'center', margin: '2rem 0 0', borderRadius: '10px' }}>
-                  <Lottie animationData={animation} alt="background2" width={100} className='background2'/> 
-                  <Typography variant="h2" sx={{m: 1}}>{one}</Typography>
+                  <Lottie animationData={animation} alt="background2" className='background2'/> 
+                  <Typography variant="h2" sx={{ml: 1, mt:-.5}}>{one}</Typography>
                   </Box>
                   <Box sx={{ display: 'flex', justifyContent: 'center', margin: '1rem 0', borderRadius: '10px'}}>
                   <Lottie animationData={animation0} alt="background2" width={100} className='background2'/> 
-                  <Typography variant="h2" sx={{m: 1}}>{second}</Typography>
+                  <Typography variant="h2" sx={{ml: 1, mt:-.5}}>{second}</Typography>
                   </Box>
                   <Box sx={{ display: 'flex', justifyContent: 'center', margin: '1rem 0', borderRadius: '10px' }}>
                   <Lottie animationData={animation1} alt="background2" width={100} className='background2'/> 
-                  <Typography variant="h2" sx={{m: 1}}>{third}</Typography>
+                  <Typography variant="h2" sx={{ml: 1, mt:-.5}}>{third}</Typography>
                   </Box>
                   <Box sx={{ display: 'flex', justifyContent: 'center', margin: '1rem 0', borderRadius: '10px' }}>
                   <Lottie animationData={animation2} alt="background2" width={100} className='background2'/> 
-                  <Typography variant="h2" sx={{m: 1}}>{fourth}</Typography>
+                  <Typography variant="h2" sx={{ml: 1, mt:-.5}}>{fourth}</Typography>
                   </Box>
                   </Box>
-                <Box display={'grid'} gridTemplateColumns={{xs: "1fr", sm: "repeat(2, 1fr)", md: "repeat(2, 1fr)"}} gap={2} sx={{mt:0}} color="white">
+                <Box display={'grid'} gridTemplateColumns={{xs: "1fr", sm: "repeat(1, 1fr)", md: "repeat(1, 1fr)"}} gap={2} sx={{mt:0}} color="white">
                 
                   <Typography variant="h2">Score {score}</Typography>
-                  <Box sx={{backgroundColor: "#fff", padding: 1, borderRadius: "10px", color: "#000"}}>
-                    <NavLink className={"link1"} to="/gamemode">home</NavLink>
+                  <Box sx={{padding: 1, borderRadius: "10px", color: "#000"}}>
+                    <NavLink className={"link2"} to="/gamemode">
+                      <img src={img01} className='background4'/>
+                    </NavLink>
                   </Box>
                 </Box>
                   {showResults ? (
-                      <Box className="final-results" color={"#fff"}>
-                          <h1>Final Results</h1>
+                    <Box className="final-results" color={"#fff"}>
+                      <img src={img03} className='background5'/><br />
+                        {/* <h1>Final Results</h1> */}
                           {/* <h2>
                               {score} out of {questions.length} correct - ({(score / questions.length) * 100}%)
                           </h2> */}
-                          <button onClick={restartGame}>Restart game</button>
+                          <Button onClick={restartGame}>
+                            <img src={img02} className='background3'/>
+                          </Button>
                       </Box>
                   ) : (
                       <div className="question-card">

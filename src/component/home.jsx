@@ -10,7 +10,7 @@ function home() {
     <span className="home">
     <Box sx={{}}>
       <img src={img0} className='img0' alt="logo" /><br />
-      <NavLink className="link0" to="/gamemode" sx={{}}> Play </NavLink>
+      <NavLink className="link0" to="/start" sx={{}}> Play </NavLink>
     
     </Box>
     </span>
