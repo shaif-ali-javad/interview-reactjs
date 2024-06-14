@@ -74,23 +74,43 @@ import { NavLink } from "react-router-dom";
     
           // onclick change color
     
-          const updateHighestScore = () => {
-            if (score > highestScore) {
-                setHighestScore(score);
-                setOne(score);
-              }
-              if (one > score) {
-                setSecond(score);
-              }
-              if (second > score) {
-                setThird(score);
-              }
-              if (third > score) {
-                setFourth(score);
-              }
+        //   const updateHighestScore = () => {
+        //     if (score > highestScore) {
+        //         setHighestScore(score);
+        //         setOne(score);
+        //       }
+        //       if (one > score) {
+        //         setSecond(score);
+        //       }
+        //       if (second > score) {
+        //         setThird(score);
+        //       }
+        //       if (third > score) {
+        //         setFourth(score);
+        //       }
               
-        }
+        // }
     
+// high score update
+
+const updateHighestScore = () => {
+  if (score > one) {
+      setFourth(third);
+      setThird(second);
+      setSecond(one);
+      setOne(score);
+  } else if (score > second) {
+      setFourth(third);
+      setThird(second);
+      setSecond(score);
+  } else if (score > third) {
+      setFourth(third);
+      setThird(score);
+  } else if (score > fourth) {
+      setFourth(score);
+  }
+} 
+
           useEffect(() => {
               const timer = setInterval(() => {
                   setSeconds((prevSeconds) => prevSeconds + 1);
@@ -103,6 +123,7 @@ import { NavLink } from "react-router-dom";
                   if (seconds === 5 ) {
                       nextQuestion();
                       setSeconds(0);
+                      setShowResults(true)
                   }
               }, 1000);
     
@@ -334,22 +355,22 @@ import { NavLink } from "react-router-dom";
                   <Box className="App">
                   {/* <Typography variant="h2">HS: {highestScore}</Typography> */}
                   <Box sx={{mt:-7, ml: -40, color: "#fff"}} className={"top"} textAlign="left">
-                    <Typography variant="h2" sx={{ml: 1, mt:1, mb:-3}} textAlign={"center"}>High <br /> Score</Typography>
+                    <Typography variant="h2" sx={{ml: 1, mt:1, mb:-3, fontSize: 30}} textAlign={"center"}>High <br /> Score</Typography>
                   <Box sx={{ display: 'flex', justifyContent: 'center', margin: '2rem 0 0', borderRadius: '10px' }}>
                   <Lottie animationData={animation} alt="background2" className='background2'/> 
-                  <Typography variant="h2" sx={{ml: 1, mt:-.5}}>{one}</Typography>
+                  <Typography variant="h2" sx={{ml: 1, mt:-.8, fontSize:50}}>{one}</Typography>
                   </Box>
                   <Box sx={{ display: 'flex', justifyContent: 'center', margin: '1rem 0', borderRadius: '10px'}}>
                   <Lottie animationData={animation0} alt="background2" width={100} className='background2'/> 
-                  <Typography variant="h2" sx={{ml: 1, mt:-.5}}>{second}</Typography>
+                  <Typography variant="h2" sx={{ml: 1, mt:-.8, fontSize:50}}>{second}</Typography>
                   </Box>
                   <Box sx={{ display: 'flex', justifyContent: 'center', margin: '1rem 0', borderRadius: '10px' }}>
                   <Lottie animationData={animation1} alt="background2" width={100} className='background2'/> 
-                  <Typography variant="h2" sx={{ml: 1, mt:-.5}}>{third}</Typography>
+                  <Typography variant="h2" sx={{ml: 1, mt:-.8, fontSize:50}}>{third}</Typography>
                   </Box>
                   <Box sx={{ display: 'flex', justifyContent: 'center', margin: '1rem 0', borderRadius: '10px' }}>
                   <Lottie animationData={animation2} alt="background2" width={100} className='background2'/> 
-                  <Typography variant="h2" sx={{ml: 1, mt:-.5}}>{fourth}</Typography>
+                  <Typography variant="h2" sx={{ml: 1, mt:-.8, fontSize:50}}>{fourth}</Typography>
                   </Box>
                   </Box>
                 <Box display={'grid'} gridTemplateColumns={{xs: "1fr", sm: "repeat(1, 1fr)", md: "repeat(1, 1fr)"}} gap={2} sx={{mt:0}} color="white">
@@ -363,7 +384,8 @@ import { NavLink } from "react-router-dom";
                 </Box>
                       {showResults ? (
                           <Box className="final-results" color={"#fff"}>
-                              <h1>Final Results</h1>
+                            <img src={img03} className='background5'/><br />
+                              {/* <h1>Final Results</h1> */}
                               {/* <h2>
                                   {score} out of {questions.length} correct - ({(score / questions.length) * 100}%)
                               </h2> */}

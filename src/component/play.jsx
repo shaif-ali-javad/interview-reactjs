@@ -478,6 +478,22 @@ const s = {//  import React, { useEffect, useState } from "react";
       const [second, setSecond] = useState(0);
       const [third, setThird] = useState(0);
       const [fourth, setFourth] = useState(0);
+      const [player, setPlayer] = useState([])
+
+      const addScore = (score) => {
+        updateHighestScore(score);
+        // Optionally, send the score to the server if needed
+        axios.put('axios.post("http://localhost:3001/player', { score })
+            .then(response => console.log(response.data))
+            .catch(error => console.error('Error updating score:', error));
+    };
+
+
+useEffect(() => {
+  axios.get("http://localhost:3001/getplayer")
+  .then(player => setPlayer(player.data))
+  .catch(err => console.log(err))
+}, [])
 
 
     // max game time 1 minute
@@ -502,22 +518,42 @@ const s = {//  import React, { useEffect, useState } from "react";
 
       // onclick change color
 
-      const updateHighestScore = () => {
-        if (score > highestScore) {
-            setHighestScore(score);
-            setOne(score);
-          }
-          if (one > score) {
-            setSecond(score);
-          }
-          if (second > score) {
-            setThird(score);
-          }
-          if (third > score) {
-            setFourth(score);
-          }
+    //   const updateHighestScore = () => {
+    //     if (score > highestScore) {
+    //         setHighestScore(score);
+    //         setOne(score);
+    //       }
+    //       if (one > score) {
+    //         setSecond(score);
+    //       }
+    //       if (second > score) {
+    //         setThird(score);
+    //       }
+    //       if (third > score) {
+    //         setFourth(score);
+    //       }
           
-    }
+    // }
+
+// high score update
+
+const updateHighestScore = () => {
+  if (score > one) {
+      setFourth(third);
+      setThird(second);
+      setSecond(one);
+      setOne(score);
+  } else if (score > second) {
+      setFourth(third);
+      setThird(second);
+      setSecond(score);
+  } else if (score > third) {
+      setFourth(third);
+      setThird(score);
+  } else if (score > fourth) {
+      setFourth(score);
+  }
+}
 
       useEffect(() => {
           const timer = setInterval(() => {
@@ -747,28 +783,47 @@ const s = {//  import React, { useEffect, useState } from "react";
       <div className="App">
               <Box className="App">
                   {/* <Typography variant="h2">HS: {highestScore}</Typography> */}
-                  <Box sx={{mt:-7, ml: -40, color: "#fff"}} className={"top"} textAlign="left">
-                    <Typography variant="h2" sx={{ml: 1, mt:1, mb:-3}} textAlign={"center"}>High <br /> Score</Typography>
+                  <Box sx={{mt:0, ml: -40, color: "#fff", backgroundColor: "#000", }} className={"top"} textAlign="left">
+                    <Typography variant="h2" sx={{ml: 0, mt:0, mb:-3, fontSize: 20, backgroundColor: "#20dbce", p: 1, width: 200}} textAlign={"center"}>Top Scorers</Typography>
+                    <Typography variant="h2" sx={{display: "flex",ml: 0, mt:3, mb:-3, fontSize: 12, backgroundColor: "rgb(4, 93, 148)", p: 1, width: 200, wordSpacing: 15}} textAlign={"center"}><Typography sx={{fontSize: 12, mr: 10}} className="">Rank Player</Typography> <Typography sx={{fontSize: 12}} className="">Score</Typography></Typography>
                   <Box sx={{ display: 'flex', justifyContent: 'center', margin: '2rem 0 0', borderRadius: '10px' }}>
-                  <Lottie animationData={animation} alt="background2" className='background2'/> 
-                  <Typography variant="h2" sx={{ml: 1, mt:-.5}}>{one}</Typography>
+                    <Box sx={{ml:-7}}>
+                  <Lottie animationData={animation} alt="background2" className='background3'/> 
+                    </Box>
+                  <Typography variant="h2" sx={{ml: 1, mt:-.8, fontSize:50}}>
+                    
+                    {/* {one} */}
+                  {player.map((player) => (
+        <Typography variant="body1" sx={{display: "flex", mb: -3}} className="player">
+          <p className="text">{player.name }
+           </p>
+        </Typography>
+      ))}
+               {player.map((player) => (
+        <Typography variant="body1" sx={{display: "flex", mb: -3}} className="player">
+              <p style={{textAlign: "right"}} className="text-p">{player.score }</p>
+        </Typography>
+      ))}</Typography>
                   </Box>
-                  <Box sx={{ display: 'flex', justifyContent: 'center', margin: '1rem 0', borderRadius: '10px'}}>
+                  <Box sx={{ justifyContent: 'center', mt: -28.9, mr: 20, borderRadius: '10px' }} >
+                  <Box sx={{ display: 'flex', justifyContent: 'center', margin: '1rem 0', borderRadius: '10px', mb: 2.6}}>
                   <Lottie animationData={animation0} alt="background2" width={100} className='background2'/> 
-                  <Typography variant="h2" sx={{ml: 1, mt:-.5}}>{second}</Typography>
+                  {/* <Typography variant="h2" sx={{ml: 1, mt:-.8, fontSize:50}}>{second}</Typography> */}
                   </Box>
-                  <Box sx={{ display: 'flex', justifyContent: 'center', margin: '1rem 0', borderRadius: '10px' }}>
+                  <Box sx={{ display: 'flex', justifyContent: 'center', borderRadius: '10px' , mt: -1.1, mb: 1}}>
                   <Lottie animationData={animation1} alt="background2" width={100} className='background2'/> 
-                  <Typography variant="h2" sx={{ml: 1, mt:-.5}}>{third}</Typography>
+                  {/* <Typography variant="h2" sx={{ml: 1, mt:-.8, fontSize:50}}>{third}</Typography> */}
                   </Box>
                   <Box sx={{ display: 'flex', justifyContent: 'center', margin: '1rem 0', borderRadius: '10px' }}>
                   <Lottie animationData={animation2} alt="background2" width={100} className='background2'/> 
-                  <Typography variant="h2" sx={{ml: 1, mt:-.5}}>{fourth}</Typography>
+                  {/* <Typography variant="h2" sx={{ml: 1, mt:-.8, fontSize:50}}>{fourth}</Typography> */}
+                  </Box>
                   </Box>
                   </Box>
                 <Box display={'grid'} gridTemplateColumns={{xs: "1fr", sm: "repeat(1, 1fr)", md: "repeat(1, 1fr)"}} gap={2} sx={{mt:0}} color="white">
                 
-                  <Typography variant="h2">Score {score}</Typography>
+                  <Typography variant="h5" sx={{backgroundColor: "hsl(294, 100%, 35%)", borderRadius:10, mb:-3}}>Your Score : {score}</Typography>
+
                   <Box sx={{padding: 1, borderRadius: "10px", color: "#000"}}>
                     <NavLink className={"link2"} to="/gamemode">
                       <img src={img01} className='background4'/>
@@ -776,14 +831,16 @@ const s = {//  import React, { useEffect, useState } from "react";
                   </Box>
                 </Box>
                   {showResults ? (
+                    
                     <Box className="final-results" color={"#fff"}>
+                      <Typography variant="h5" className="bestScore" sx={{borderRadius:10, mb: 10}}>Best Score: {one}</Typography>
                       <img src={img03} className='background5'/><br />
                         {/* <h1>Final Results</h1> */}
                           {/* <h2>
                               {score} out of {questions.length} correct - ({(score / questions.length) * 100}%)
                           </h2> */}
                           <Button onClick={restartGame}>
-                            <img src={img02} className='background3'/>
+                            <img src={img02} className='restart'/>
                           </Button>
                       </Box>
                   ) : (
@@ -795,8 +852,8 @@ const s = {//  import React, { useEffect, useState } from "react";
                         </Box> */}
                           <Box sx={{ display: 'flex', justifyContent: 'center', margin: '0 0 1rem', borderRadius: '10px' }}>
 
-                          <Lottie animationData={animation3} alt="background2" width={100} className='background2'/> 
-                          <Typography variant="h2" color={'#fff'} sx={{m: 1}}>
+                          <Lottie animationData={animation3} alt="timer" width={100} className='timer'/> 
+                          <Typography variant="h2" color={'#fff'} sx={{ml: 1, mt:-.5}}>
                             {maxSecond<10? "0" + maxSecond:maxSecond}
                           </Typography>
                           </Box>
